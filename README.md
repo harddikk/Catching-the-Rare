@@ -1,21 +1,32 @@
-# 🧾 Learning from Deception: Machine Learning Approaches to Honeypot Intrusion Detection
+# 🧾 Catching the Rare: Ensemble and Linear Models for Imbalanced Network Intrusion Detection
 
 ![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17393150.svg)](https://doi.org/10.5281/zenodo.17393150)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18408605.svg)](https://doi.org/10.5281/zenodo.18408605)
 ![Python](https://img.shields.io/badge/python-3.11-blue)
-![GitHub last commit](https://img.shields.io/github/last-commit/harddikk/Learning-From-Deception)
-![GitHub issues](https://img.shields.io/github/issues/harddikk/Learning-From-Deception)
+![GitHub last commit](https://img.shields.io/github/last-commit/harddikk/Catching-the-Rare)
+![GitHub issues](https://img.shields.io/github/issues/harddikk/Catching-the-Rare)
 
-This repository contains the implementation and analysis for my research project **"Learning from Deception"**, focusing on machine learning models for detecting and classifying honeypot intrusions.
+This repository contains the code and analysis accompanying the research paper  
+**“Catching the Rare: Ensemble and Linear Models for Imbalanced Network Intrusion Detection.”**
 
-The research has been **published on [Zenodo](https://zenodo.org/records/17393150)** (DOI: 10.5281/zenodo.17393150).
+The research has been **published on [Zenodo](https://zenodo.org/records/18408605)** (DOI: https://doi.org/10.5281/zenodo.18408605).
+
+The paper is published on Zenodo (Version 2.0):  
+https://doi.org/10.5281/zenodo.18408605
 
 ---
 
-## 🧠 Overview
+## Overview
 
-Honeypots are intentionally vulnerable systems used to attract and analyze cyberattacks.  
-This project explores the use of supervised learning algorithms to classify malicious network traffic patterns captured from honeypots and predict intrusion types.
+Network intrusion detection is challenged by extreme class imbalance, where rare attack instances are easily overshadowed by benign traffic. This project investigates supervised machine learning approaches for binary intrusion detection, with an explicit focus on detecting minority (attack) classes rather than optimizing overall accuracy.
+
+While the study is inspired by attack behaviors commonly analyzed in honeypot environments, it does not involve live honeypot deployment. Experiments are conducted using the publicly available CICIDS 2017 dataset, generated in a controlled environment that simulates realistic benign and malicious network traffic.
+
+Core research focus:
+- Linear vs ensemble models under class imbalance
+- Precision–recall analysis over raw accuracy
+- Feature importance and interpretability
+- Transparent discussion of methodological limitations
 
 **Goal:**  
 > To improve early intrusion detection by identifying deceptive attack vectors through data-driven insights.
@@ -26,8 +37,8 @@ This project explores the use of supervised learning algorithms to classify mali
 
 **Clone the repo:**
 ```bash
-git clone https://github.com/harddikk/Learning-From-Deception.git
-cd Learning-From-Deception
+git clone https://github.com/harddikk/Catching-the-Rare.git
+cd Catching-the-Rare
 ```
 
 **Install dependencies:**
@@ -37,16 +48,19 @@ pip install -r requirements.txt
 
 ---
 
-## 📊 Dataset
+## Dataset
 
-The dataset used is the MachineLearningCVE dataset.  
-Due to licensing and file size, it’s not included in this repository.
+This project uses the CICIDS 2017 intrusion detection dataset released by the Canadian Institute for Cybersecurity.
 
-To reproduce results, download the dataset from the official source and place all CSV files inside a folder named 
-```bash 
-MachineLearningCVE/
+Due to size and licensing constraints, the dataset is not included in this repository.
+
+To reproduce the experiments:
+1. Download CICIDS 2017 from the official source
+2. Place the extracted CSV files in a directory named:
+```bash
+CICIDS2017/
 ```
- at the project root.
+at the project root.
 
 ---
 
@@ -56,12 +70,12 @@ MachineLearningCVE/
 <summary>Click to expand</summary>
 
 ```
-Learning-From-Deception/
+Catching-the-Rare/
 ├── honeypot_intrusion_detection.ipynb      # Main Jupyter Notebook
 ├── requirements.txt                        # Python dependencies
 ├── LICENSE                                 # CC BY 4.0 License
 ├── README.md                               # This file
-├── MachineLearningCVE/                     # Dataset folder (not included)
+├── CICIDS2017/                             # Dataset folder (not included)
 └── results/                                # Folder for selected plots/images
     ├── confusion_matrix_rf.png
     └── feature_importance_rf.png
@@ -85,14 +99,17 @@ Results (plots, accuracy metrics, confusion matrices, etc.) will be displayed in
 ## 🧩 Techniques Used
 
 - Data preprocessing and cleaning
-- Exploratory data analysis (EDA)
-- Feature selection and correlation mapping
-- Supervised ML algorithms:
-  - Random Forest
-  - Logistic Regression
-  - Decision Tree
-  - Naïve Bayes
-- Evaluation metrics (Accuracy, Precision, Recall, F1-score)
+- Stratified sampling under class imbalance
+- Feature scaling with leakage-aware pipelines
+- Supervised ML models:
+  - Logistic Regression (linear baseline)
+  - Random Forest (ensemble)
+  - XGBoost (ensemble)
+- Evaluation using imbalance-aware metrics:
+  - Precision–Recall curves
+  - ROC curves
+  - Balanced accuracy
+
 
 ---
 
@@ -115,6 +132,7 @@ Results (plots, accuracy metrics, confusion matrices, etc.) will be displayed in
 ![Confusion Matrix (RF)](results/confusion_matrix_rf.png)  
 ![Feature Importance - Top 10 (RF)](results/feature_importance_rf.png)
 
+> Note: Accuracy is reported for completeness but is not emphasized due to severe class imbalance.
 > Confusion matrices for other models and feature importance for XGBoost are available in the notebook.
 
 </details>
@@ -126,7 +144,7 @@ Results (plots, accuracy metrics, confusion matrices, etc.) will be displayed in
 If you use or reference this work, please cite:
 
 ```
-Tiwari, Hardik. (2025). Learning from Deception: Machine Learning Approaches to Honeypot Intrusion Detection. Zenodo. https://doi.org/10.5281/zenodo.17393150
+Tiwari, Hardik. (2026). Catching the Rare: Ensemble and Linear Models for Imbalanced Network Intrusion Detection. Zenodo. https://doi.org/10.5281/zenodo.18408605
 ```
 
 ---
